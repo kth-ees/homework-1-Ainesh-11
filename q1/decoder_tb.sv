@@ -1,14 +1,18 @@
+`timescale 1ns/1ns
+
 module decoder_tb;
 
-  // Testbench signals
-  logic [3:0] binary;
-  logic [15:0] one_hot;
+logic [3:0] binary_tb;
+logic [15:0] one_hot_tb;
 
-  // Instantiate the decoder module
-  decoder uut (
-    .binary(binary),
-    .one_hot(one_hot)
-  );
+decoder uut (.binary(binary_tb), .one_hot(one_hot_tb));
 
-  // Complete your testbench here
+initial begin
+  for (int i = 0; i < 16; i++) begin
+    binary_tb = i;
+    $display("input value: %d", binary_tb, "; output value: %d", one_hot_tb);
+    #10;
+  end
+  $stop;
+end
 endmodule
